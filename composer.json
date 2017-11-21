@@ -1,0 +1,25 @@
+{
+  "name": "namelesscoder/patternlab-fluid-typo3-export",
+  "description": "TYPO3 CMS Extension asset expor integration for Pattern Lab Fluid Edition",
+  "license": "MIT",
+  "type": "patternlab-plugin",
+  "autoload": {
+    "psr-4": {
+      "NamelessCoder\\FluidPatternEngineExport\\": "src/"
+    }
+  },
+  "extra": {
+    "patternlab": {
+      "config": {
+        "plugins": {
+          "typo3-fluid-export": {
+            "enabled": true
+          }
+        },
+        "fluidExportHooks": [
+          "NamelessCoder\\FluidPatternEngineExport\\FluidPatternEngineHook"
+        ]
+      }
+    }
+  }
+}
