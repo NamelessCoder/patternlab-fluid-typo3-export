@@ -107,7 +107,7 @@ class FluidPatternLabHook
             // Next, identify any "f:render" statements which render partials (with or without sections). Rewrite all
             // of those to use the expected target partial naming.
             $finalSource = preg_replace_callback('/(f:render.+partial=["\'])([^"\']+)/', function(array $matches) {
-                return $matches[1] . (new PartialNamingHelper())->determinePartialNameForPattern($matches[2]);
+                return $matches[1] . (new PartialNamingHelper())->determinePatternSubPath($matches[2]);
             }, $finalSource);
 
             file_put_contents($targetFilename, $finalSource);
