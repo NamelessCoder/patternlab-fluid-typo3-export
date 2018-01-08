@@ -131,7 +131,7 @@ class FluidPatternLabHook
 
     protected function determineSourceFileLocation(array $patternConfiguration, array $types): string
     {
-        $fileSubpath = $patternConfiguration['path'] . DIRECTORY_SEPARATOR . $patternConfiguration['name'] . '.' . $patternConfiguration['ext'];
+        $fileSubpath = ($patternConfiguration['pathName'] ?: $patternConfiguration['path'] . DIRECTORY_SEPARATOR . $patternConfiguration['name']) . '.' . $patternConfiguration['ext'];
         $type = null;
         foreach ($types as $type) {
             if ($type['name'] === $patternConfiguration['type']) {
