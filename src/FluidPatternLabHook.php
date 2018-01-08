@@ -53,6 +53,9 @@ class FluidPatternLabHook
         foreach ($filtered as $patternName => $patternConfiguration) {
             $targetFilename = $helper->determineTargetFileLocationForPattern($patternName);
             $sourceFilename = $this->determineSourceFileLocation($patternConfiguration, $types);
+            if (!file_exists($sourceFilename)) {
+                throw new \UnexpectedValueException('File "' . $sourceFilename . '" was referenced by pattern "' . $patternName . '" but the file does not exist');
+            }
             $targetPatternDirectory = pathinfo($targetFilename, PATHINFO_DIRNAME);
             if (!is_dir($targetPatternDirectory)) {
                 mkdir($targetPatternDirectory, 0755, true);
