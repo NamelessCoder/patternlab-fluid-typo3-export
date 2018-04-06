@@ -51,6 +51,10 @@ class FluidPatternLabHook
         $parser = $this->view->getRenderingContext()->getTemplateParser();
 
         foreach ($filtered as $patternName => $patternConfiguration) {
+            if (array_key_exists('pseudo', $patternConfiguration) && $patternConfiguration['pseudo']) {
+                continue;
+            }
+
             $targetFilename = $helper->determineTargetFileLocationForPattern($patternName);
             $sourceFilename = $this->determineSourceFileLocation($patternConfiguration, $types);
             if (!file_exists($sourceFilename)) {
