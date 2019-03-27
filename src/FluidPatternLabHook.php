@@ -104,8 +104,11 @@ class FluidPatternLabHook
                 // not required to contain this node, and it does not get evaluated, we rewrite in order to
                 // reduce potential confusion.
                 $layoutSource = file_get_contents($layoutSourceFilename);
-                $layoutSource = $this->writeNewLayoutName($layoutSource, $layoutName, $properLayoutName);
-                file_put_contents($layoutTargetFilename, $layoutSource);
+                $layoutFinalSource = preg_replace_callback('/(f:render.+partial=["\'])([^"\']+)/', function(array $matches) {
+                    return $matches[1] . (new PartialNamingHelper())->determinePatternSubPath($matches[2]);
+                }, $layoutSource);
+                $layoutFinalSource = $this->writeNewLayoutName($layoutFinalSource, $layoutName, $properLayoutName);
+                file_put_contents($layoutTargetFilename, $layoutFinalSource);
             }
 
             // Next, identify any "f:render" statements which render partials (with or without sections). Rewrite all
