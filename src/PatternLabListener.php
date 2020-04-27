@@ -10,7 +10,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\NodeInterface;
 
-class FluidPatternLabHook
+class PatternLabListener
 {
     use FluidLoader;
 
